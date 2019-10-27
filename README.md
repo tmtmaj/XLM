@@ -1,4 +1,27 @@
-# XLM
+ko - zh 훈련을 통해 나온 결과 .. 매우 참담 
+best bleu score 1.xx 
+먼저 mlm 모델을 훈련시키고 unsupervise 모델 훈련을 진행
+mlm 모델의 훈련은 순조로웠으나.. unsupervise 모델 훈련은 최초 모델의 bleu score가 가장 높음
+ko , zh 모두 15M / 심지어 corpus의 domain도 비슷했다. ko는 전부 naver에서 긁어온 신문 모델.. zh도 800만 문장은 신문에서 긁어온 내용 700만은 wiki 데이터 
+
+첫번째 훈련시에는 korean에 대한 tokenize를 사용하지 않아서 훈련이 안되었나 싶었지만..
+두번째 모델.. 은 twitter( konlpy ) tokenizer를 사용하여 tokenize 한 후 bpe를 했고, chinese에 대해서도 저자가 제안하는 chinese tokenizer인 stanford의 tokenizer를 사용했지만.. 결과는 같았다. 
+
+훈련이 안되는 이유.. 정확하게 모르겠지만..
+
+https://github.com/facebookresearch/XLM/issues/218
+
+Hi, I think the reason is that vietnamese and chinese share very little BPE code.
+Have you tried using MUSE to align the word embeddings?
+
+추측.. 공유하는 단어가 적어서?
+가능한 방법은 
+1.MUSE도 해볼것
+2.한국어 문장에서 한자로 변환가능한 부분을 한자로 변환
+
+
+<br>
+<br>
 
 PyTorch original implementation of [Cross-lingual Language Model Pretraining](https://arxiv.org/abs/1901.07291). Includes:
 - [Monolingual language model pretraining (BERT)](#i-monolingual-language-model-pretraining-bert)
